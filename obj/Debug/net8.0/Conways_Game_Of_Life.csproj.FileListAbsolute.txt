@@ -1,0 +1,15 @@
+C:\Users\Chase\Documents\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.exe
+C:\Users\Chase\Documents\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.deps.json
+C:\Users\Chase\Documents\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.runtimeconfig.json
+C:\Users\Chase\Documents\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.dll
+C:\Users\Chase\Documents\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.pdb
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.AssemblyInfoInputs.cache
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.AssemblyInfo.cs
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.csproj.CoreCompileInputs.cache
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.sourcelink.json
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.dll
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\refint\Conways_Game_Of_Life.dll
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.pdb
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.genruntimeconfig.cache
+C:\Users\Chase\Documents\Conways_Game_Of_Life\obj\Debug\net8.0\ref\Conways_Game_Of_Life.dll
