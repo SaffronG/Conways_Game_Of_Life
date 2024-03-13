@@ -69,7 +69,7 @@ public class BoundBoard
                     Console.Write(visualCellChar);
             }
     }
-    private void cellEvolution() {
+    private void cellEvolution(List<int[]> targetCoord) {
         
     }
     public enum Directions { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
