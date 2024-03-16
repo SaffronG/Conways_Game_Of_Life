@@ -1,5 +1,7 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Transactions;
 
 namespace lib;
 
@@ -69,8 +71,55 @@ public class BoundBoard
                     Console.Write(visualCellChar);
             }
     }
-    private void cellEvolution(List<int[]> targetCoord) {
-        
+    private void cellEvolution(List<int[]> targetCoord) 
+        {
+        for (int i = 0; i < _numOfLivingCells; i++)
+        {
+            List<int[]> cellBounds = new();
+            //foreach (Directions location)
+            //    cellBounds.Add(returnBox(targetCoord[i], location));
+            
+        }
+    }
+    private int[] returnBox(int[] currentCoord, Directions location)
+    {
+        int[] newBound = new int[2];
+        switch(location)
+        {
+            case Directions.North:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.NorthEast:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.East:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.SouthEast:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.South:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.SouthWest:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.West:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+            case Directions.NorthWest:
+                newBound[0] = currentCoord[0]--;
+                newBound[1] = currentCoord[1]; 
+                break;
+        }
+        return [];
     }
     public enum Directions { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
     public enum Life { Dead, Alive }
