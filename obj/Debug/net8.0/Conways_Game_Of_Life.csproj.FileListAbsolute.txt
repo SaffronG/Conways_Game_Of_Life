@@ -28,3 +28,18 @@ C:\Users\chase\1400_day1\GitHomeworkFolder\Conways_Game_Of_Life\obj\Debug\net8.0
 C:\Users\chase\1400_day1\GitHomeworkFolder\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.pdb
 C:\Users\chase\1400_day1\GitHomeworkFolder\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.genruntimeconfig.cache
 C:\Users\chase\1400_day1\GitHomeworkFolder\Conways_Game_Of_Life\obj\Debug\net8.0\ref\Conways_Game_Of_Life.dll
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.AssemblyInfoInputs.cache
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.AssemblyInfo.cs
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.csproj.CoreCompileInputs.cache
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.sourcelink.json
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.dll
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\refint\Conways_Game_Of_Life.dll
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.pdb
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.exe
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.deps.json
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.runtimeconfig.json
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.dll
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\bin\Debug\net8.0\Conways_Game_Of_Life.pdb
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\Conways_Game_Of_Life.genruntimeconfig.cache
+D:\Coding Projects\Python API Client\Conways_Game_Of_Life\obj\Debug\net8.0\ref\Conways_Game_Of_Life.dll
