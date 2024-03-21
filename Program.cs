@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        CellLogic logic = new(14,14);
+        CellLogic logic = new(3,3);
         logic.displayBoard();
     }
 }

@@ -6,57 +6,82 @@ namespace lib;
 
 public class CellLogic
 {
+    // _ _ _
+    // _ _ X
+    // _ X X
     readonly Random Random = new();
-    private Dictionary<int, Life> _cellBoard;
+    private Dictionary<int[], Life> _cellBoardFrameOne = new();
+    private Dictionary<int[], Life> _cellBoardFrameTwo = new();
     private readonly int _boardWidth;
-    private readonly int _boardDimensions;
-    public CellLogic(int sideLength = 3, int livingCells = 3) {
-        _boardDimensions = (int) Math.Pow((double) sideLength, 2);
+    private int _numOflivingCells;
+    private List<int[]> _livingCellsList = new();
+
+    public CellLogic(int sideLength = 3, int numOflivingCells = 3) {
         _boardWidth = sideLength;
-        _cellBoard = populateCellBoard(livingCells);
+        _numOflivingCells = numOflivingCells;
+        randomizedUniqueCoords(_livingCellsList);
+        _cellBoardFrameOne = populateCellBoard(_cellBoardFrameOne);
+        _cellBoardFrameTwo = populateCellBoard(_cellBoardFrameTwo);
     }
 
-    private Dictionary<int, Life> populateCellBoard(int livingCells) {
-        var cellBoard = new Dictionary<int, Life>();
-        List<int> livingCellsLocation = randomizedUniqueCoords(livingCells);
-        for (int i = 0; i < _boardDimensions; i++)
+    private Dictionary<int[], Life> populateCellBoard(Dictionary<int[], Life> cellBoard) {
+        //                                     {i} = index          [x, y] = cell coordinates
+        // living cell locaations example: { --> {0} [0,1] , --> {1} [1,1] , --> {2} [2,2] }
+        Dictionary<int[], Life> returnDict = new();
+        for (int i = 0; i < _boardWidth; i++)
         {   
-            for (int j = 0; j < livingCellsLocation.Count; j++) {
-                if (!livingCellsLocation.Contains(i))
-                    cellBoard[i] = Life.Dead;
+            for (int j = 0; j < _boardWidth; j++) {
+                // if "current cell" --> [0,0] is not in _livingCellsList then set cellBoard Dictionary key "[0,0]" equal to Life.Dead
+                if (!_livingCellsList.Contains([i,j]))
+                {
+                    returnDict.Add([i,j],Life.Dead);
+                }
+                // else the value is not dead, so [0,0] is equal to Life.ALive
                 else
-                    cellBoard[i] = Life.Alive;
+                {
+                    returnDict.Add([i,j],Life.Alive);
+                }
             }
         }
-        return cellBoard;
+        return returnDict;
     }
-    private List<int> randomizedUniqueCoords(int livingCells)
+    private void randomizedUniqueCoords(List<int[]> livingCellsList)
     {
-        var randomizedCoords = new List<int>();
-        int newCell = coordinateRandomizer(_boardDimensions);
-        for (int i =0; i < _boardDimensions; i++)
+        // Using the empty list of int arrays, create random coordinates X based on the int livingCells
+        // newCell is the current randomized coord, if it is already in the list of coordinates skip
+        // if newCell is not in the coordinates list, add it
+        // keep doing this until the total number of coordinates in the list is less than or equal to the total of living cells
+        int[] newCell = coordinateRandomizer(_boardWidth);
+        for (int i = 0; i < _numOflivingCells; i++)
         {
             do
             {
-                if (!randomizedCoords.Contains(newCell))
-                    randomizedCoords.Add(newCell);
+                if (!livingCellsList.Contains(newCell))
+                    livingCellsList.Add(newCell);
                 else
-                    newCell = coordinateRandomizer(_boardDimensions);
+                    newCell = coordinateRandomizer(_boardWidth);
 
-            } while (randomizedCoords.Contains(newCell));
+            } while (livingCellsList.Contains(newCell));
         }
-        return randomizedCoords;
     }
     public void displayBoard() {
-        for (int i = 0; i < _boardDimensions; i++)
+        // displays the dictionary frame board using simple logic
+        // if dead, print 0
+        // if alive, print 1
+        // then it has an iterator to seperate them by rows in the console
+        Console.Clear();
+        int i = 1;
+        foreach (var value in _cellBoardFrameOne)
         {
-            char printChar = _cellBoard[i] == Life.Dead ? '_' : '0';
-            if ((i+1)%_boardWidth == 0)
-                Console.WriteLine(_cellBoard[printChar]);
+            char printChar = value.Value == Life.Dead ? '0' : '1';
+            if (i % _boardWidth == 0)
+                Console.WriteLine(printChar);
             else
-                Console.Write(_cellBoard[printChar]);
-        }
+                Console.Write(printChar);
+            i++;
+        }    
     }
-    private int coordinateRandomizer(int sideLength) => Random.Next(0, (int) Math.Pow((double) sideLength, 2));
+    private int[] coordinateRandomizer(int sideLength) => [Random.Shared.Next(0,_boardWidth),Random.Shared.Next(0,_boardWidth)]; 
+    // returns a random coordinate within the bounds of the grid, defined by sideLength
     enum Life {Alive, Dead};
 }
