@@ -18,6 +18,7 @@ public class CellLogic
     private List<int[]> _livingCellsList = new();
 
     public CellLogic(int sideLength = 3, int numOflivingCells = 3) {
+        // Initialize the CellLogic class in a good starting state
         _boardWidth = sideLength;
         _numOflivingCells = numOflivingCells;
         randomizedUniqueCoords(_livingCellsList);
@@ -32,12 +33,11 @@ public class CellLogic
         {   
             for (int j = 0; j < _boardWidth; j++) {
                     cellBoard.Add([i,j],Life.Dead);
-
             }
         }
         for (int i = 0; i < _livingCellsList.Count; i++)
         {
-            cellBoard[_livingCellsList[i]] = Life.Alive;
+            cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
         }
     }
     private void randomizedUniqueCoords(List<int[]> livingCellsList)
