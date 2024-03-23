@@ -7,6 +7,7 @@ namespace lib;
 
 public class CellLogic
 {
+    // EXAMPLE STATE
     // _ _ _
     // _ _ X
     // _ X X
