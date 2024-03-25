@@ -1,9 +1,4 @@
-﻿using System.ComponentModel;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Security;
-
-namespace lib;
+﻿namespace lib;
 
 public class CellLogic
 {
@@ -28,17 +23,23 @@ public class CellLogic
     }
 
     private void populateCellBoard(Dictionary<int[], Life> cellBoard) {
-        //                                     {i} = index          [x, y] = cell coordinates
+        //                                       {i} = index         [x,y] = cell coordinates
         // living cell locaations example: { --> {0} [0,1] , --> {1} [1,1] , --> {2} [2,2] }
         for (int i = 0; i < _boardWidth; i++)
         {   
             for (int j = 0; j < _boardWidth; j++) {
-                    cellBoard.Add([i,j],Life.Dead);
+                cellBoard.Add([i,j],Life.Dead);
             }
         }
         for (int i = 0; i < _livingCellsList.Count; i++)
         {
-            cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
+            for (int j = 0; j < _boardWidth; j ++)
+                for (int k = 0; k < _boardWidth; k++)
+                {
+                    if (_livingCellsList.ElementAt(i) == (int[]) [j,k])
+                        cellBoard[[j,k]] = Life.Alive;
+                }
+            // cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
         }
     }
     private void randomizedUniqueCoords(List<int[]> livingCellsList)
