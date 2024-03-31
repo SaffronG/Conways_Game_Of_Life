@@ -8,6 +8,7 @@ namespace lib;
 
 public class CellLogic
 {
+    // EXAMPLE STATE
     // _ _ _
     // _ _ X
     // _ X X
@@ -19,6 +20,7 @@ public class CellLogic
     private List<(int x, int y)> _livingCellsList = new();
 
     public CellLogic(int sideLength = 3, int numOflivingCells = 3) {
+        // Initialize the CellLogic class in a good starting state
         _boardWidth = sideLength;
         _numOflivingCells = numOflivingCells;
         randomizedUniqueCoords(_livingCellsList);
@@ -38,7 +40,13 @@ public class CellLogic
         }
         for (int i = 0; i < _livingCellsList.Count; i++)
         {
-            cellBoard[_livingCellsList[i]] = Life.Alive;
+            for (int j = 0; j < _boardWidth; j ++)
+                for (int k = 0; k < _boardWidth; k++)
+                {
+                    if (_livingCellsList.ElementAt(i) == (int[]) [j,k])
+                        cellBoard[[j,k]] = Life.Alive;
+                }
+            // cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
         }
     }
     private void randomizedUniqueCoords(List<(int x, int y)> livingCellsList)
