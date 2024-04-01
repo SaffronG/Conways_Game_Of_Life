@@ -43,8 +43,8 @@ public class CellLogic
             for (int j = 0; j < _boardWidth; j ++)
                 for (int k = 0; k < _boardWidth; k++)
                 {
-                    if (_livingCellsList.ElementAt(i) == (int[]) [j,k])
-                        cellBoard[[j,k]] = Life.Alive;
+                    if (_livingCellsList.ElementAt(i) == (j, k))
+                        cellBoard[(j, k)] = Life.Alive;
                 }
             // cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
         }
