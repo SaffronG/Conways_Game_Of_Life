@@ -86,115 +86,40 @@ public class CellLogic
         }    
     }
     public void evolveFrame() {
+        int livingNeighbors;
         foreach (var cell in _cellBoardFrameOne)
         {
+            livingNeighbors = cellNeighborsCount(cell.Key);
+            renderNextFrame(cell.Key, livingNeighbors);
         }
     }
     private int cellNeighborsCount((int x, int y) location) {
-            int livingNeighbors = 0;
+        int livingNeighbors = 0;
+        // {0,0} is the target cell where (x,y) are the neighboring cells
+        // (-1,-1), (0,-1), (1,-1),
+        // (-1, 0), {0, 0}, (1, 0),
+        // (-1, 1), (0, 1), (1, 1),
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x-1,location.y-1)) ? determineState((location.x-1,location.y-1)) : 0; // (0,0)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x,location.y-1)) ? determineState((location.x,location.y-1)) : 0; //(1,0)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x+1,location.y-1)) ? determineState((location.x+1,location.y-1)) : 0; // (2,0)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x-1,location.y)) ? determineState((location.x -1,location.y)) : 0; // (0,1)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x+1,location.y)) ? determineState((location.x+1,location.y)) : 0; // (2,1)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x-1,location.y+1)) ? determineState((location.x-1,location.y+1)) : 0; // (0,2)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x,location.y+1)) ? determineState((location.x,location.y+1)) : 0; // (1,2)
+        livingNeighbors += _cellBoardFrameOne.ContainsKey((location.x+1,location.y+1)) ? determineState((location.x+1,location.y+1)) : 0; // (2,2)
 
-            // {0,0} is the target cell where (x,y) are the neighboring cells
-            // (-1,-1), (0,-1), (1,-1),
-            // (-1, 0), {0, 0}, (1, 0),
-            // (-1, 1), (0, 1), (1, 1),
-
-            // example of a target cell in a location not on the edge
-            // (0, 0), (1, 0), (2, 0),
-            // (0, 1), {1, 1}, (2, 1),
-            // (0, 2), (1, 2), (2, 2),
-
-            if (location.x == 0)
-            {
-                if (location.y == 0) {
-                    livingNeighbors += determineState((location.x+1,location.y)); // (1,0)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (0,1)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (1,1)
-                }
-                else if (location.y == _boardWidth) {
-                    livingNeighbors += determineState((location.x-1,location.y-1)); // (0,0)
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x-1,location.y)); // (0,1)
-                }
-                else {
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x+1,location.y-1)); // (2,0)
-                    livingNeighbors += determineState((location.x+1,location.y)); // (2,1)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (1,2)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (2,2)
-                }
-            }
-            else if (location.x == _boardWidth)
-            {
-                if (location.y == 0) {
-                    livingNeighbors += determineState((location.x+1,location.y)); // (1,0)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (0,1)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (1,1)
-                }
-                else if (location.y == _boardWidth) {
-                    livingNeighbors += determineState((location.x-1,location.y-1)); // (0,0)
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x-1,location.y)); // (0,1)
-                }
-                else {
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x+1,location.y-1)); // (2,0)
-                    livingNeighbors += determineState((location.x+1,location.y)); // (2,1)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (1,2)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (2,2)
-                }
-            }
-            else if (location.y == 0)
-            {
-                if (location.y == 0) {
-                    livingNeighbors += determineState((location.x+1,location.y)); // (1,0)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (0,1)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (1,1)
-                }
-                else if (location.y == _boardWidth) {
-                    livingNeighbors += determineState((location.x-1,location.y-1)); // (0,0)
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x-1,location.y)); // (0,1)
-                }
-                else {
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x+1,location.y-1)); // (2,0)
-                    livingNeighbors += determineState((location.x+1,location.y)); // (2,1)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (1,2)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (2,2)
-                }
-            }
-            else if (location.y == _boardWidth)
-            {
-                if (location.y == 0) {
-                    livingNeighbors += determineState((location.x+1,location.y)); // (1,0)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (0,1)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (1,1)
-                }
-                else if (location.y == _boardWidth) {
-                    livingNeighbors += determineState((location.x-1,location.y-1)); // (0,0)
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x-1,location.y)); // (0,1)
-                }
-                else {
-                    livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                    livingNeighbors += determineState((location.x+1,location.y-1)); // (2,0)
-                    livingNeighbors += determineState((location.x+1,location.y)); // (2,1)
-                    livingNeighbors += determineState((location.x,location.y+1)); // (1,2)
-                    livingNeighbors += determineState((location.x+1,location.y+1)); // (2,2)
-                }
-            }
-            else
-            {
-                livingNeighbors += determineState((location.x-1,location.y-1)); // (0,0)
-                livingNeighbors += determineState((location.x,location.y-1)); //(1,0)
-                livingNeighbors += determineState((location.x+1,location.y-1)); // (2,0)
-                livingNeighbors += determineState((location.x -1,location.y)); // (0,1)
-                livingNeighbors += determineState((location.x+1,location.y)); // (2,1)
-                livingNeighbors += determineState((location.x-1,location.y+1)); // (0,2)
-                livingNeighbors += determineState((location.x,location.y+1)); // (1,2)
-                livingNeighbors += determineState((location.x+1,location.y+1)); // (2,2)
-            }
         return livingNeighbors;
+    }
+    private void renderNextFrame((int x, int y) cell, int neighbors) {
+        switch (neighbors) {
+            case 2:
+            case 3:
+                _cellBoardFrameTwo[cell] = Life.Alive;
+                break;
+            default:
+                _cellBoardFrameTwo[cell] = Life.Dead;
+                break;
+        }
     }
     private int determineState((int x, int y) location) => _cellBoardFrameOne[location] == Life.Alive ? 1 : 0;
     private (int, int) coordinateRandomizer(int sideLength) => (Random.Shared.Next(0,_boardWidth),Random.Shared.Next(0,_boardWidth)); 
