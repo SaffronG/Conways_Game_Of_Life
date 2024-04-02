@@ -27,7 +27,16 @@ public class CellLogic
         populateCellBoard(_cellBoardFrameOne);
         populateCellBoard(_cellBoardFrameTwo);
     }
-
+    public void gameLoop() {
+        while (true)
+        {
+            displayBoard(_cellBoardFrameOne);
+            evolveFrame();
+            setVisibleFrame();
+            Thread.Sleep(150);
+            displayBoard(_cellBoardFrameOne);
+        }
+    }
     private void populateCellBoard(Dictionary<(int x, int y), Life> cellBoard) {
         //                                     {i} = index          [x, y] = cell coordinates
         // living cell locaations example: { --> {0} [0,1] , --> {1} [1,1] , --> {2} [2,2] }
@@ -49,6 +58,11 @@ public class CellLogic
             // cellBoard[_livingCellsList[i]] = Life.Alive; // cellBoard[key: _livingCellsList[ {i} --> [0,1] ] ] = Life.Alive;
         }
     }
+    private void setVisibleFrame() {
+        for (int i = 0; i < _boardWidth; i++)
+            for (int j = 0; j < _boardWidth; j++)
+                _cellBoardFrameOne[(i,j)] = _cellBoardFrameTwo[(i,j)];
+    }
     private void randomizedUniqueCoords(List<(int x, int y)> livingCellsList)
     {
         // Using the empty list of int arrays, create random coordinates X based on the int livingCells
@@ -68,14 +82,14 @@ public class CellLogic
             } while (livingCellsList.Contains(newCell));
         }
     }
-    public void displayBoard() {
+    private void displayBoard(Dictionary<(int x, int y), Life> frame) {
         // displays the dictionary frame board using simple logic
         // if dead, print 0
         // if alive, print 1
         // then it has an iterator to seperate them by rows in the console
         Console.Clear();
         int i = 1;
-        foreach (var value in _cellBoardFrameOne)
+        foreach (var value in frame)
         {
             char printChar = value.Value == Life.Dead ? '0' : '1';
             if (i % _boardWidth == 0)
