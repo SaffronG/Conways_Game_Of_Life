@@ -28,12 +28,14 @@ public class CellLogic
         populateCellBoard(_cellBoardFrameTwo);
     }
     public void gameLoop() {
+        displayBoard(_cellBoardFrameOne);
+        Console.ReadKey(true);
         while (true)
         {
             displayBoard(_cellBoardFrameOne);
             evolveFrame();
             setVisibleFrame();
-            Thread.Sleep(150);
+            Thread.Sleep(100);
             displayBoard(_cellBoardFrameOne);
         }
     }
@@ -91,7 +93,7 @@ public class CellLogic
         int i = 1;
         foreach (var value in frame)
         {
-            char printChar = value.Value == Life.Dead ? '0' : '1';
+            char printChar = value.Value == Life.Dead ? '_' : 'O';
             if (i % _boardWidth == 0)
                 Console.WriteLine(printChar);
             else
@@ -125,15 +127,12 @@ public class CellLogic
         return livingNeighbors;
     }
     private void renderNextFrame((int x, int y) cell, int neighbors) {
-        switch (neighbors) {
-            case 2:
-            case 3:
-                _cellBoardFrameTwo[cell] = Life.Alive;
-                break;
-            default:
-                _cellBoardFrameTwo[cell] = Life.Dead;
-                break;
-        }
+        if (neighbors == 1 | neighbors == 2)
+            _cellBoardFrameTwo[cell] = _cellBoardFrameOne[cell];
+        else if (neighbors == 3)
+            _cellBoardFrameTwo[cell] = Life.Alive;
+        else
+            _cellBoardFrameTwo[cell] = Life.Dead;
     }
     private int determineState((int x, int y) location) => _cellBoardFrameOne[location] == Life.Alive ? 1 : 0;
     private (int, int) coordinateRandomizer(int sideLength) => (Random.Shared.Next(0,_boardWidth),Random.Shared.Next(0,_boardWidth)); 
